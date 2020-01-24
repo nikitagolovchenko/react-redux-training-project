@@ -2,14 +2,10 @@ import React from 'react';
 import style from './MyPosts.module.scss';
 import Post from './Post/Posts';
 
-const MyPosts = () => {
-	
-	let posts = [	
-		{ id: 1, message: "Hello World!", likesCount: 5},
-		{ id: 2, message: "It's my first project", likesCount: 12},
-	];
+const MyPosts = (props) => {
+	console.log(props.posts);
 
-	let postsElements = posts.map( p => <Post message={p.message} likesCount={p.likesCount} /> );
+	let postsElements = props.posts.map( p => <Post message={p.message} likesCount={p.likesCount} key={p.id} /> );
 
 	return (
 		<div className={style.inner}>
