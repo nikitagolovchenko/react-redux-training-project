@@ -24,3 +24,39 @@
 	.message {
 	}
 }
+
+.newMessage {
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 20px;
+	overflow: hidden;
+	text-align: center;
+
+	textarea {
+		padding: 0;
+		width: 100%;
+		resize: none;
+		height: 40px;
+		margin-bottom: 5px;
+		background-color: transparent;
+		border-bottom: 1px solid #333;
+	}
+
+	button {
+		display: block;
+		background-color: #ccc;
+		color: #333;
+		border: 1px solid #333;
+		border-radius: 5px;
+		padding: 5px;
+		transition: 0.3s linear;
+		cursor: pointer;
+		margin: 0 auto;
+		margin-bottom: 10px;
+
+		&:hover {
+			background-color: black;
+			color: #ccc;
+		}
+	}
+}
