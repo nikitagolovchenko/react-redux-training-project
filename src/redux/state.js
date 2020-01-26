@@ -24,7 +24,9 @@ let state = {
             { id: 2, name: 'Oleg' },
             { id: 3, name: 'Sveta' },
             { id: 4, name: 'Sasha' },
-        ]
+        ],
+        // ------
+        enteredText: ''
     }
 };
 
@@ -44,6 +46,26 @@ export let addPost = () => {
 
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
+    renderEntireTree(state);
+}
+
+
+// ----======00000=====-------
+// добавить введенное значение (сохраненное в state) в массив сообщений и обнулить введеное значение:
+export let addNewMessage = () => {
+    let newMessage = {
+        id: 6,
+        message: state.dialogsPage.enteredText,
+    };
+
+    state.dialogsPage.messagesData.push(newMessage);
+    state.dialogsPage.enteredText = '';
+    renderEntireTree(state);
+}
+
+// добавить введенное значение в state:
+export let updateEnteredText = (newText) => {
+    state.dialogsPage.enteredText = newText;
     renderEntireTree(state);
 }
 

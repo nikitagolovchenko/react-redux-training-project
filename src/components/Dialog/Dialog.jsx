@@ -17,8 +17,12 @@ const Dialog = props => {
 
 
 	let readNewMessage = () => {
+		props.addNewMessage();
+	}
+
+	let updateNewMessage = () => {
 		let text = newMessageLink.current.value;
-		previewMessage.current.innerText = 	text;	
+		props.updateEnteredText(text);
 	}
 
 
@@ -33,7 +37,7 @@ const Dialog = props => {
 				
 				{/* ------- */}
 				<div className={styles.newMessage}>
-					<textarea ref={ newMessageLink } placeholder="add new message..."></textarea>
+					<textarea ref={ newMessageLink } onChange={ updateNewMessage } placeholder="add new message..." value={ props.state.enteredText }></textarea>
 					<button onClick={ readNewMessage }>Add message</button>
 					<span className="previewMessage" ref={ previewMessage }></span>
 				</div>
