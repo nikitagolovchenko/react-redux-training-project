@@ -1,4 +1,4 @@
-let renderEntireTree = () => {
+let renderEntireTree = () => {  // заглушка
     console.log('State was changed');
 }
 
