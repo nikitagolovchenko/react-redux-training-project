@@ -1,4 +1,6 @@
-import { renderEntireTree } from "../render";
+let renderEntireTree = () => {
+    console.log('State was changed');
+}
 
 let state = {
 	profilePage: {
@@ -31,7 +33,7 @@ let state = {
 };
 
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
@@ -44,7 +46,7 @@ export let addPost = () => {
 }
 
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     renderEntireTree(state);
 }
@@ -52,7 +54,7 @@ export let updateNewPostText = (newText) => {
 
 // ----======00000=====-------
 // добавить введенное значение (сохраненное в state) в массив сообщений и обнулить введеное значение:
-export let addNewMessage = () => {
+export const addNewMessage = () => {
     let newMessage = {
         id: 6,
         message: state.dialogsPage.enteredText,
@@ -64,9 +66,14 @@ export let addNewMessage = () => {
 }
 
 // добавить введенное значение в state:
-export let updateEnteredText = (newText) => {
+export const updateEnteredText = (newText) => {
     state.dialogsPage.enteredText = newText;
     renderEntireTree(state);
+}
+
+// ================================
+export const subscribe = (observer) => {
+    renderEntireTree = observer;  // паттерн observer(наблюдатель)
 }
 
 export default state;
