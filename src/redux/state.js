@@ -1,3 +1,9 @@
+// action types
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
+const UPDATE_ENTERED_TEXT = 'UPDATE-ENTERED-TEXT';
+
 let store = {
 	// приватное свойство:
 	_state: {
@@ -44,11 +50,10 @@ let store = {
 		this._callSubscriber = observer; // паттерн observer(наблюдатель)
 	},
 
-
-    // dispatch - метод которые передаем в компоненты, передаем объект action
-    // action = { type: 'ADD-POST }
+	// dispatch - метод которые передаем в компоненты, передаем объект action
+	// action = { type: 'ADD-POST }
 	dispatch(action) {
-		if (action.type === 'ADD-POST') {
+		if (action.type === ADD_POST) {
 			let newPost = {
 				id: 5,
 				message: this._state.profilePage.newPostText,
@@ -57,39 +62,45 @@ let store = {
 
 			this._state.profilePage.posts.push(newPost);
 			this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-            
-		} else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-            
-            
-        } else if (action.type === 'ADD-NEW-MESSAGE') {
+			this._callSubscriber(this._state);
+		} else if (action.type === UPDATE_NEW_POST_TEXT) {
+			this._state.profilePage.newPostText = action.newText;
+			this._callSubscriber(this._state);
+		} else if (action.type === ADD_NEW_MESSAGE) {
 			// добавить введенное значение (сохраненное в state) в массив сообщений и обнулить введеное значение:
 			let newMessages = {
 				id: 6,
 				message: this._state.dialogsPage.enteredText,
 			};
-	
+
 			this._state.dialogsPage.messagesData.push(newMessages);
 			this._state.dialogsPage.enteredText = '';
 			this._callSubscriber(this._state);
-			
-            let newMessage = {
-                id: 6,
-                message: this._state.dialogsPage.enteredText,
-            };
-    
-            this._state.dialogsPage.messagesData.push(newMessage);
-            this._state.dialogsPage.enteredText = '';
-            this._callSubscriber(this._state);
-            
-        } else if (action.type === 'UPDATE-ENTERED-TEXT') {
-            this._state.dialogsPage.enteredText = action.newText;
+
+			let newMessage = {
+				id: 6,
+				message: this._state.dialogsPage.enteredText,
+			};
+
+			this._state.dialogsPage.messagesData.push(newMessage);
+			this._state.dialogsPage.enteredText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === UPDATE_ENTERED_TEXT) {
+			this._state.dialogsPage.enteredText = action.newText;
 			this._callSubscriber(this._state);
 		}
-	}
+	},
 };
+
+// action creator:
+export const addPostActionCreator = () => ({
+	type: ADD_POST,
+});
+
+export const updateNewPostTextActionCreator = text => ({
+	type: UPDATE_NEW_POST_TEXT,
+	newText: text,
+});
 
 export default store;
 window.store = store;

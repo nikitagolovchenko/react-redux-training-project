@@ -8,6 +8,7 @@ import Dialog from './components/Dialog/Dialog';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
+import Home from './components/Home/Home';
 
 const App = props => {
 	return (
@@ -15,6 +16,7 @@ const App = props => {
 			<Header />
 			<Navbar />
 			<div className="app-wrapper-content">
+				<Route exact path="/" render={() => <Home />} />
 				<Route path="/dialogs" render={() => <Dialog state={props.state.dialogsPage} dispatch={ props.dispatch }/>} />
 				<Route
 					path="/profile"
